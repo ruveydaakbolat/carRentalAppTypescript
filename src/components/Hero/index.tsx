@@ -1,9 +1,10 @@
 import CustomButton from "../CustomButtom";
+import { motion } from "framer-motion";
 
 const Hero = () => {
-    const flyTo = (): void => {
-        alert("Aşağıya kaydır");
-    };
+  const flyTo = (): void => {
+    alert("Aşağıya kaydır");
+  };
 
   return (
     <div className="hero">
@@ -14,10 +15,29 @@ const Hero = () => {
           kiralama deneyimini Altın Seçenekleri ile taçlandırarak her anını özel
           kılabilirsin.
         </p>
-        <CustomButton title="Arabaları Keşfet" designs="mt-10" handleClick={flyTo} />
+        <CustomButton
+          title="Arabaları Keşfet"
+          designs="mt-10"
+          handleClick={flyTo}
+        />
       </div>
       <div className="flex justify-center">
-        <img className="object-contain" src="/hero.png" />
+        {/* resim yüklendiği anda devreye girecek animasyon */}
+        <motion.img
+          initial={{
+            translateX: 200,
+            scale: 0.7,
+          }}
+          animate={{
+            translateX: 0,
+            scale: 1,
+          }}
+          transition={{
+            duration: 1,
+          }}
+          className="object-contain"
+          src="/hero.png"
+        />
       </div>
     </div>
   );

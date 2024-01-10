@@ -2,10 +2,11 @@ import { MouseEventHandler } from "react"; // mouse olaylarında çalışan fonk
 
 // Gelen propların tipini tanımlama
 export type ButtonPropsType = {
-  designs: string;
   title: string;
+  designs?: string;
   btnType?: "button" | "submit" | "reset"; // hem union types hem de string literal kullanıldı
   disabled?: boolean;
+  rIcon?: string; 
   handleClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -24,3 +25,12 @@ export interface CarType {
   transmission: "a" | "m";
   year: number;
 };
+
+// url'deki paramların tipi
+export type FilterType = {
+  make?: string;
+  model?: string;
+  limit?: string;
+  fuel_type?: string;
+  year?: string;
+}

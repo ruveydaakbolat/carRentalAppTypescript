@@ -1,4 +1,4 @@
-import { CarType } from "../types";
+import { CarType, FilterType } from "../types";
 
 const options = {
   method: "GET",
@@ -8,8 +8,13 @@ const options = {
   },
 };
 
-export async function fetchCars(): Promise<CarType[]> {
-    const res = await fetch(`https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=civic`, options)
+export async function fetchCars(filters: FilterType): Promise<CarType[]> {
+  // url'de parametrelerin olmama durumunda undefined olmaması için varsayılan değerler belirlendi
+  const { make = 'honda', model = '', limit = '5', year = '', fuel_type = '' } = filters;
+  const res = await fetch(
+    `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${make}&model=${model}&limit=${limit}&year=${year}&fuel_type=${fuel_type}`,
+    options
+  );
 
-    return await res.json();
+  return await res.json();
 }
